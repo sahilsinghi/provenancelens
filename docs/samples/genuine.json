@@ -1,0 +1,504 @@
+{
+ "tool": "provenancelens",
+ "version": "0.1.0",
+ "generated": "2026-10-18T03:32:03+00:00",
+ "file": {
+  "name": "genuine.jpg",
+  "size": 192919,
+  "sha256": "945da4bdfbe6ddd008824773ae5ffea286b1b854520349537c6abdb912c7e34c"
+ },
+ "format": "image/jpeg",
+ "extension_mismatch": null,
+ "c2pa": {
+  "present": true,
+  "state": "Trusted",
+  "summary": "Valid content credentials, signed by ProvenanceLens Sample Camera (trusted).",
+  "active": {
+   "label": "urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2",
+   "title": "astronaut.jpg",
+   "format": null,
+   "claim_generator": "provenancelens 0.1.0",
+   "signer": {
+    "issuer": "ProvenanceLens TEST ONLY",
+    "common_name": "ProvenanceLens Sample Camera",
+    "alg": "Es256",
+    "time": null,
+    "serial": "197466862571659642320704381806399177040349061650"
+   },
+   "actions": [
+    {
+     "action": "c2pa.created",
+     "when": null,
+     "software": "ProvenanceLens test signer",
+     "digital_source_type": "digitalCapture"
+    }
+   ],
+   "assertions": [
+    "c2pa.actions.v2"
+   ],
+   "ingredients": []
+  },
+  "manifests": [
+   {
+    "label": "urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2",
+    "title": "astronaut.jpg",
+    "active": true,
+    "signer": "ProvenanceLens Sample Camera",
+    "issuer": "ProvenanceLens TEST ONLY",
+    "ingredients": []
+   }
+  ],
+  "statuses": [
+   {
+    "scope": "active manifest",
+    "kind": "success",
+    "code": "signingCredential.trusted",
+    "sdk": "signing certificate trusted, found in [system_anchors] trust anchors",
+    "explain": "The signer's certificate chains to a trust anchor you configured.",
+    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.signature"
+   },
+   {
+    "scope": "active manifest",
+    "kind": "success",
+    "code": "claimSignature.insideValidity",
+    "sdk": "claim signature valid",
+    "explain": "The signing certificate was within its validity period when the claim was signed.",
+    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.signature"
+   },
+   {
+    "scope": "active manifest",
+    "kind": "success",
+    "code": "claimSignature.validated",
+    "sdk": "claim signature valid",
+    "explain": "The manifest's signature is cryptographically valid.",
+    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.signature"
+   },
+   {
+    "scope": "active manifest",
+    "kind": "success",
+    "code": "assertion.hashedURI.match",
+    "sdk": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data",
+    "explain": "An assertion is exactly as it was when the manifest was signed.",
+    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.assertions/c2pa.hash.data"
+   },
+   {
+    "scope": "active manifest",
+    "kind": "success",
+    "code": "assertion.hashedURI.match",
+    "sdk": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.thumbnail.claim",
+    "explain": "An assertion is exactly as it was when the manifest was signed.",
+    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.assertions/c2pa.thumbnail.claim"
+   },
+   {
+    "scope": "active manifest",
+    "kind": "success",
+    "code": "assertion.hashedURI.match",
+    "sdk": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2",
+    "explain": "An assertion is exactly as it was when the manifest was signed.",
+    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.assertions/c2pa.actions.v2"
+   },
+   {
+    "scope": "active manifest",
+    "kind": "success",
+    "code": "assertion.dataHash.match",
+    "sdk": "data hash valid",
+    "explain": "The image bytes are exactly the bytes that were signed (hard binding holds).",
+    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.assertions/c2pa.hash.data"
+   },
+   {
+    "scope": "active manifest",
+    "kind": "informational",
+    "code": "signingCredential.ocsp.skipped",
+    "sdk": "OCSP fetching skipped",
+    "explain": "Online revocation (OCSP) checking was skipped.",
+    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.signature"
+   }
+  ],
+  "hard_binding": {
+   "checked": true,
+   "alg": "sha256",
+   "exclusions": [
+    {
+     "start": 20,
+     "length": 124867
+    }
+   ],
+   "expected": "945df306f127a6012259cb6b4694cd1f07c49d63e21136ff595cdd99f3516028",
+   "computed": "945df306f127a6012259cb6b4694cd1f07c49d63e21136ff595cdd99f3516028",
+   "match": true,
+   "exclusion_covers_non_manifest": []
+  },
+  "certificates": [
+   {
+    "role": "signer",
+    "subject": "O=ProvenanceLens TEST ONLY,CN=ProvenanceLens Sample Camera",
+    "issuer": "O=ProvenanceLens TEST ONLY,CN=ProvenanceLens Test Root",
+    "not_before": "2026-10-18T03:27:03+00:00",
+    "not_after": "2027-10-18T03:27:03+00:00",
+    "serial": "197466862571659642320704381806399177040349061650",
+    "key": "EC secp256r1",
+    "eku": [
+     "emailProtection"
+    ],
+    "is_ca": false,
+    "sha256": "1c8c610e0e0325c401a14d2343ac32e2d9d3588ab7ba896b8114dbb75244ba41"
+   },
+   {
+    "role": "root",
+    "subject": "O=ProvenanceLens TEST ONLY,CN=ProvenanceLens Test Root",
+    "issuer": "O=ProvenanceLens TEST ONLY,CN=ProvenanceLens Test Root",
+    "not_before": "2026-10-18T03:27:03+00:00",
+    "not_after": "2028-10-17T03:27:03+00:00",
+    "serial": "172798392488787412019129749094750863254259434960",
+    "key": "EC secp256r1",
+    "eku": [],
+    "is_ca": true,
+    "sha256": "a65d659c25aac906f1a009f9e71dd9dfad79751ee546cbddd4541abc98ed32ce"
+   }
+  ],
+  "certificate_findings": [
+   "This is a test certificate: the credentials are well-formed, but they identify no real organisation."
+  ],
+  "ai_declared": [],
+  "trust_anchors": [
+   "O=ProvenanceLens TEST ONLY,CN=ProvenanceLens Test Root"
+  ],
+  "error": null
+ },
+ "jpeg": {
+  "width": 512,
+  "height": 512,
+  "progressive": false,
+  "subsampling": "4:2:0",
+  "segments": [
+   "JFIF",
+   "JUMBF (C2PA)",
+   "JUMBF (C2PA)"
+  ],
+  "huffman_tables": 4,
+  "trailing_bytes": 0,
+  "qtables": {
+   "ijg_quality_estimate": 90,
+   "ijg_exact": true,
+   "best": {
+    "source": "IJG libjpeg standard tables",
+    "family": "ijg",
+    "quality": "q90",
+    "distance": 0.0,
+    "exact": true,
+    "note": "libjpeg/libjpeg-turbo: GIMP, ImageMagick, Pillow, OpenCV, browsers, many web services",
+    "shared_with": [
+     "libjpeg-turbo cjpeg q90"
+    ]
+   },
+   "candidates": [
+    {
+     "source": "IJG libjpeg standard tables",
+     "family": "ijg",
+     "quality": "q90",
+     "distance": 0.0,
+     "exact": true,
+     "note": "libjpeg/libjpeg-turbo: GIMP, ImageMagick, Pillow, OpenCV, browsers, many web services",
+     "shared_with": [
+      "libjpeg-turbo cjpeg q90"
+     ]
+    },
+    {
+     "source": "IJG libjpeg standard tables",
+     "family": "ijg",
+     "quality": "q91",
+     "distance": 1.406,
+     "exact": false,
+     "note": "libjpeg/libjpeg-turbo: GIMP, ImageMagick, Pillow, OpenCV, browsers, many web services",
+     "shared_with": []
+    },
+    {
+     "source": "IJG libjpeg standard tables",
+     "family": "ijg",
+     "quality": "q89",
+     "distance": 1.492,
+     "exact": false,
+     "note": "libjpeg/libjpeg-turbo: GIMP, ImageMagick, Pillow, OpenCV, browsers, many web services",
+     "shared_with": []
+    }
+   ],
+   "custom_tables": false
+  },
+  "luma_table": [
+   3,
+   2,
+   2,
+   3,
+   5,
+   8,
+   10,
+   12,
+   2,
+   2,
+   3,
+   4,
+   5,
+   12,
+   12,
+   11,
+   3,
+   3,
+   3,
+   5,
+   8,
+   11,
+   14,
+   11,
+   3,
+   3,
+   4,
+   6,
+   10,
+   17,
+   16,
+   12,
+   4,
+   4,
+   7,
+   11,
+   14,
+   22,
+   21,
+   15,
+   5,
+   7,
+   11,
+   13,
+   16,
+   21,
+   23,
+   18,
+   10,
+   13,
+   16,
+   17,
+   21,
+   24,
+   24,
+   20,
+   14,
+   18,
+   19,
+   20,
+   22,
+   20,
+   21,
+   20
+  ],
+  "chroma_table": [
+   3,
+   4,
+   5,
+   9,
+   20,
+   20,
+   20,
+   20,
+   4,
+   4,
+   5,
+   13,
+   20,
+   20,
+   20,
+   20,
+   5,
+   5,
+   11,
+   20,
+   20,
+   20,
+   20,
+   20,
+   9,
+   13,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20
+  ],
+  "djpeg": {
+   "applicable": true,
+   "probability": 0.013,
+   "threshold": 0.2,
+   "double": false,
+   "features": {
+    "dist_low": 0.0688,
+    "dist_max": 0.0982,
+    "dist_high": 0.0455,
+    "missing": 0.0,
+    "benford": 0.0152
+   },
+   "note": "no double-compression footprint; note this test cannot see a second save at *lower* quality"
+  }
+ },
+ "metadata": {
+  "empty": true,
+  "summary": {
+   "exif": {},
+   "gps": {},
+   "xmp": {},
+   "xmp_history": [],
+   "iptc": {},
+   "png_text_keys": [],
+   "thumbnail_bytes": 0,
+   "makernote": false,
+   "reader": "Pillow"
+  },
+  "findings": [
+   {
+    "rule": "M00-stripped",
+    "title": "No metadata",
+    "status": "info",
+    "strength": 0.0,
+    "detail": "The file carries no EXIF, XMP, IPTC or text metadata. Social platforms and messaging apps strip it on upload, so this says nothing about authenticity - but it removes every metadata check below."
+   }
+  ]
+ },
+ "image": {
+  "width": 512,
+  "height": 512
+ },
+ "pixel": {
+  "ela": {
+   "name": "ela",
+   "score": 0.0,
+   "regions": [],
+   "note": "re-saved at quality 80; mean error level 3.76"
+  },
+  "noise": {
+   "name": "noise",
+   "score": 0.0,
+   "regions": [],
+   "note": "median noise sigma 0.74 grey levels"
+  },
+  "ghost": {
+   "name": "ghost",
+   "score": 0.0,
+   "regions": [],
+   "note": "no localised ghost (map shown at quality 55)"
+  }
+ },
+ "verdict": {
+  "provenance": "Valid content credentials, signed by ProvenanceLens Sample Camera (trusted).",
+  "editing_level": "none",
+  "editing_score": 0.0,
+  "generation": "No AI-generation declaration found (absence is not evidence of a camera origin).",
+  "generation_score": 0.0,
+  "authentic_score": 0.9,
+  "limited_signal": false,
+  "headline": "Valid content credentials, signed by ProvenanceLens Sample Camera (trusted). No forensic evidence of editing.",
+  "signals": [
+   {
+    "id": "c2pa.valid",
+    "module": "c2pa",
+    "title": "Image unchanged since it was signed",
+    "supports": "authentic",
+    "strength": 1.0,
+    "weight": 0.9,
+    "contribution": 0.9,
+    "detail": "Valid content credentials, signed by ProvenanceLens Sample Camera (trusted)."
+   },
+   {
+    "id": "M00-stripped",
+    "module": "metadata",
+    "title": "No metadata",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "The file carries no EXIF, XMP, IPTC or text metadata. Social platforms and messaging apps strip it on upload, so this says nothing about authenticity - but it removes every metadata check below."
+   },
+   {
+    "id": "qtable.match",
+    "module": "qtables",
+    "title": "Closest encoder: IJG libjpeg standard tables q90",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "distance 0.0 (0 = identical). Shared tables identify a library, not an app."
+   },
+   {
+    "id": "djpeg.single",
+    "module": "djpeg",
+    "title": "No double-compression footprint",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "no double-compression footprint; note this test cannot see a second save at *lower* quality"
+   },
+   {
+    "id": "pixel.noise",
+    "module": "pixel",
+    "title": "NOISE map shown, not scored",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "Not counted because it localised no splice on the labelled set (docs/evaluation.md). median noise sigma 0.74 grey levels"
+   },
+   {
+    "id": "pixel.ela",
+    "module": "pixel",
+    "title": "ELA: nothing above threshold",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "re-saved at quality 80; mean error level 3.76"
+   },
+   {
+    "id": "pixel.ghost",
+    "module": "pixel",
+    "title": "GHOST: nothing above threshold",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "no localised ghost (map shown at quality 55)"
+   }
+  ]
+ },
+ "seconds": 0.19
+}

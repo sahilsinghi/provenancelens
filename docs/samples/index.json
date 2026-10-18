@@ -1,0 +1,42 @@
+[
+ {
+  "name": "genuine",
+  "how": "Signed at capture with a test identity; analysed with that identity's root as a trust anchor.",
+  "c2pa": "Trusted",
+  "editing": "none",
+  "generation": false,
+  "headline": "Valid content credentials, signed by ProvenanceLens Sample Camera (trusted). No forensic evidence of editing."
+ },
+ {
+  "name": "edited",
+  "how": "A 180x180 patch from another JPEG pasted at (300, 60), then re-exported. No credentials.",
+  "c2pa": "absent",
+  "editing": "moderate",
+  "generation": false,
+  "headline": "Moderate forensic evidence of editing: saved as jpeg more than once; ghost highlights a region."
+ },
+ {
+  "name": "tampered",
+  "how": "The signed genuine image with a single bit flipped in the compressed pixel data.",
+  "c2pa": "Invalid",
+  "editing": "strong",
+  "generation": false,
+  "headline": "Content credentials are present but INVALID: The image bytes changed after signing (hard binding broken): pixels or file structure were modified. Strong forensic evidence of editing: content credentials broken."
+ },
+ {
+  "name": "ai-labelled",
+  "how": "Credentials declare trainedAlgorithmicMedia. (The pixels are a public-domain photo: what is under test is that a declared label is found and shown, not a guess from pixels.)",
+  "c2pa": "Trusted",
+  "editing": "none",
+  "generation": true,
+  "headline": "Valid content credentials, signed by ProvenanceLens Sample Camera (trusted). AI generation is declared. No forensic evidence of editing."
+ },
+ {
+  "name": "stripped",
+  "how": "A PNG with no metadata, no credentials and no JPEG history.",
+  "c2pa": "absent",
+  "editing": "none",
+  "generation": false,
+  "headline": "No provenance, limited forensic signal: no content credentials, no metadata, and no format-specific statistics to test. Nothing here supports a conclusion either way."
+ }
+]

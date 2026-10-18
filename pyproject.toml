@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "provenancelens"
+version = "0.1.0"
+description = "Explainable media-authenticity verifier: C2PA validation, metadata consistency and compression forensics, with every signal explained and no black-box fake detector."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Sahil Singhi" }]
+keywords = ["c2pa", "content-credentials", "image-forensics", "provenance", "osint", "ela", "jpeg"]
+dependencies = [
+  "c2pa-python>=0.38,<0.39",
+  "cryptography>=42",
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "pillow>=10.1",
+  "jinja2>=3.1",
+]
+
+[project.optional-dependencies]
+web = ["fastapi>=0.110", "uvicorn>=0.29", "python-multipart>=0.0.9"]
+eval = ["scikit-image>=0.22"]
+dev = ["pytest>=8", "httpx>=0.27", "scikit-image>=0.22", "fastapi>=0.110", "python-multipart>=0.0.9"]
+
+[project.scripts]
+provlens = "provlens.cli:main"
+
+[tool.setuptools]
+packages = ["provlens"]
+
+[tool.setuptools.package-data]
+provlens = ["data/*.json", "templates/*.j2"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "network: needs the pinned public C2PA samples (fetched once into .cache/)",
+  "slow: regenerates the labelled evaluation set",
+]
+addopts = "-m 'not slow'"
+filterwarnings = ["ignore:Using `httpx` with `starlette.testclient` is deprecated"]

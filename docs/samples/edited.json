@@ -1,0 +1,416 @@
+{
+ "tool": "provenancelens",
+ "version": "0.1.0",
+ "generated": "2026-10-18T03:32:04+00:00",
+ "file": {
+  "name": "edited.jpg",
+  "size": 61368,
+  "sha256": "08410532d1f7195b40d55a9e52662a59d55fe2c88c8a05b6ed509c8a0d987241"
+ },
+ "format": "image/jpeg",
+ "extension_mismatch": null,
+ "c2pa": {
+  "present": false,
+  "state": "absent",
+  "summary": "No content credentials. Most genuine images have none (cameras, phones and platforms rarely add them, and social platforms strip them), so this is not evidence of manipulation.",
+  "active": {},
+  "manifests": [],
+  "statuses": [],
+  "hard_binding": {},
+  "certificates": [],
+  "certificate_findings": [],
+  "ai_declared": [],
+  "trust_anchors": [],
+  "error": null
+ },
+ "jpeg": {
+  "width": 512,
+  "height": 512,
+  "progressive": false,
+  "subsampling": "4:2:0",
+  "segments": [
+   "JFIF"
+  ],
+  "huffman_tables": 4,
+  "trailing_bytes": 0,
+  "qtables": {
+   "ijg_quality_estimate": 90,
+   "ijg_exact": true,
+   "best": {
+    "source": "IJG libjpeg standard tables",
+    "family": "ijg",
+    "quality": "q90",
+    "distance": 0.0,
+    "exact": true,
+    "note": "libjpeg/libjpeg-turbo: GIMP, ImageMagick, Pillow, OpenCV, browsers, many web services",
+    "shared_with": [
+     "libjpeg-turbo cjpeg q90"
+    ]
+   },
+   "candidates": [
+    {
+     "source": "IJG libjpeg standard tables",
+     "family": "ijg",
+     "quality": "q90",
+     "distance": 0.0,
+     "exact": true,
+     "note": "libjpeg/libjpeg-turbo: GIMP, ImageMagick, Pillow, OpenCV, browsers, many web services",
+     "shared_with": [
+      "libjpeg-turbo cjpeg q90"
+     ]
+    },
+    {
+     "source": "IJG libjpeg standard tables",
+     "family": "ijg",
+     "quality": "q91",
+     "distance": 1.406,
+     "exact": false,
+     "note": "libjpeg/libjpeg-turbo: GIMP, ImageMagick, Pillow, OpenCV, browsers, many web services",
+     "shared_with": []
+    },
+    {
+     "source": "IJG libjpeg standard tables",
+     "family": "ijg",
+     "quality": "q89",
+     "distance": 1.492,
+     "exact": false,
+     "note": "libjpeg/libjpeg-turbo: GIMP, ImageMagick, Pillow, OpenCV, browsers, many web services",
+     "shared_with": []
+    }
+   ],
+   "custom_tables": false
+  },
+  "luma_table": [
+   3,
+   2,
+   2,
+   3,
+   5,
+   8,
+   10,
+   12,
+   2,
+   2,
+   3,
+   4,
+   5,
+   12,
+   12,
+   11,
+   3,
+   3,
+   3,
+   5,
+   8,
+   11,
+   14,
+   11,
+   3,
+   3,
+   4,
+   6,
+   10,
+   17,
+   16,
+   12,
+   4,
+   4,
+   7,
+   11,
+   14,
+   22,
+   21,
+   15,
+   5,
+   7,
+   11,
+   13,
+   16,
+   21,
+   23,
+   18,
+   10,
+   13,
+   16,
+   17,
+   21,
+   24,
+   24,
+   20,
+   14,
+   18,
+   19,
+   20,
+   22,
+   20,
+   21,
+   20
+  ],
+  "chroma_table": [
+   3,
+   4,
+   5,
+   9,
+   20,
+   20,
+   20,
+   20,
+   4,
+   4,
+   5,
+   13,
+   20,
+   20,
+   20,
+   20,
+   5,
+   5,
+   11,
+   20,
+   20,
+   20,
+   20,
+   20,
+   9,
+   13,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20,
+   20
+  ],
+  "djpeg": {
+   "applicable": true,
+   "probability": 0.754,
+   "threshold": 0.2,
+   "double": true,
+   "features": {
+    "dist_low": 0.5962,
+    "dist_max": 0.7044,
+    "dist_high": 0.4421,
+    "missing": 0.09,
+    "benford": 0.5275
+   },
+   "note": "DCT statistics show a requantisation footprint: the JPEG was saved at least twice, the last time with finer quantisation than before"
+  }
+ },
+ "metadata": {
+  "empty": true,
+  "summary": {
+   "exif": {},
+   "gps": {},
+   "xmp": {},
+   "xmp_history": [],
+   "iptc": {},
+   "png_text_keys": [],
+   "thumbnail_bytes": 0,
+   "makernote": false,
+   "reader": "Pillow"
+  },
+  "findings": [
+   {
+    "rule": "M00-stripped",
+    "title": "No metadata",
+    "status": "info",
+    "strength": 0.0,
+    "detail": "The file carries no EXIF, XMP, IPTC or text metadata. Social platforms and messaging apps strip it on upload, so this says nothing about authenticity - but it removes every metadata check below."
+   }
+  ]
+ },
+ "image": {
+  "width": 512,
+  "height": 512
+ },
+ "pixel": {
+  "ela": {
+   "name": "ela",
+   "score": 0.0,
+   "regions": [],
+   "note": "re-saved at quality 80; mean error level 2.25"
+  },
+  "noise": {
+   "name": "noise",
+   "score": 0.0,
+   "regions": [],
+   "note": "median noise sigma 0.74 grey levels"
+  },
+  "ghost": {
+   "name": "ghost",
+   "score": 3.39,
+   "regions": [
+    {
+     "bbox": [
+      288,
+      144,
+      432,
+      240
+     ],
+     "blocks": 39,
+     "area_fraction": 0.0381,
+     "mean_z": 3.34
+    },
+    {
+     "bbox": [
+      304,
+      48,
+      368,
+      128
+     ],
+     "blocks": 15,
+     "area_fraction": 0.0146,
+     "mean_z": 3.39
+    },
+    {
+     "bbox": [
+      384,
+      96,
+      464,
+      144
+     ],
+     "blocks": 10,
+     "area_fraction": 0.0098,
+     "mean_z": 3.3
+    },
+    {
+     "bbox": [
+      416,
+      208,
+      480,
+      240
+     ],
+     "blocks": 8,
+     "area_fraction": 0.0078,
+     "mean_z": 3.3
+    },
+    {
+     "bbox": [
+      368,
+      48,
+      400,
+      80
+     ],
+     "blocks": 4,
+     "area_fraction": 0.0039,
+     "mean_z": 3.16
+    }
+   ],
+   "note": "strongest ghost at quality 45"
+  }
+ },
+ "verdict": {
+  "provenance": "No content credentials (C2PA).",
+  "editing_level": "moderate",
+  "editing_score": 0.555,
+  "generation": "No AI-generation declaration found (absence is not evidence of a camera origin).",
+  "generation_score": 0.0,
+  "authentic_score": 0.0,
+  "limited_signal": false,
+  "headline": "Moderate forensic evidence of editing: saved as jpeg more than once; ghost highlights a region.",
+  "signals": [
+   {
+    "id": "djpeg.double",
+    "module": "djpeg",
+    "title": "Saved as JPEG more than once",
+    "supports": "edited",
+    "strength": 0.846,
+    "weight": 0.55,
+    "contribution": 0.465,
+    "detail": "DCT statistics show a requantisation footprint: the JPEG was saved at least twice, the last time with finer quantisation than before. Re-saving alone is not manipulation."
+   },
+   {
+    "id": "pixel.ghost",
+    "module": "pixel",
+    "title": "GHOST highlights a region",
+    "supports": "edited",
+    "strength": 0.557,
+    "weight": 0.3,
+    "contribution": 0.167,
+    "detail": "region [288, 144, 432, 240] (3.8% of the image), robust z 3.34 (threshold 3.0: the 95th percentile on authentic training images). A pointer for an analyst, not proof."
+   },
+   {
+    "id": "c2pa.absent",
+    "module": "c2pa",
+    "title": "No content credentials",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "Most authentic images carry no C2PA manifest, so its absence is not evidence either way."
+   },
+   {
+    "id": "M00-stripped",
+    "module": "metadata",
+    "title": "No metadata",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "The file carries no EXIF, XMP, IPTC or text metadata. Social platforms and messaging apps strip it on upload, so this says nothing about authenticity - but it removes every metadata check below."
+   },
+   {
+    "id": "qtable.match",
+    "module": "qtables",
+    "title": "Closest encoder: IJG libjpeg standard tables q90",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "distance 0.0 (0 = identical). Shared tables identify a library, not an app."
+   },
+   {
+    "id": "pixel.noise",
+    "module": "pixel",
+    "title": "NOISE map shown, not scored",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "Not counted because it localised no splice on the labelled set (docs/evaluation.md). median noise sigma 0.74 grey levels"
+   },
+   {
+    "id": "pixel.ela",
+    "module": "pixel",
+    "title": "ELA: nothing above threshold",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "re-saved at quality 80; mean error level 2.25"
+   }
+  ]
+ },
+ "seconds": 0.17
+}

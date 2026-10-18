@@ -1,0 +1,214 @@
+{
+ "tool": "provenancelens",
+ "version": "0.1.0",
+ "generated": "2026-10-18T03:32:05+00:00",
+ "file": {
+  "name": "stripped.png",
+  "size": 317266,
+  "sha256": "5f73974a1b73af2eaf2d9a60014fc167c0e41d4a13a34ca9bb138126991caf7f"
+ },
+ "format": "image/png",
+ "extension_mismatch": null,
+ "c2pa": {
+  "present": false,
+  "state": "absent",
+  "summary": "No content credentials. Most genuine images have none (cameras, phones and platforms rarely add them, and social platforms strip them), so this is not evidence of manipulation.",
+  "active": {},
+  "manifests": [],
+  "statuses": [],
+  "hard_binding": {},
+  "certificates": [],
+  "certificate_findings": [],
+  "ai_declared": [],
+  "trust_anchors": [],
+  "error": null
+ },
+ "metadata": {
+  "empty": true,
+  "summary": {
+   "exif": {},
+   "gps": {},
+   "xmp": {},
+   "xmp_history": [],
+   "iptc": {},
+   "png_text_keys": [],
+   "thumbnail_bytes": 0,
+   "makernote": false,
+   "reader": "Pillow"
+  },
+  "findings": [
+   {
+    "rule": "M00-stripped",
+    "title": "No metadata",
+    "status": "info",
+    "strength": 0.0,
+    "detail": "The file carries no EXIF, XMP, IPTC or text metadata. Social platforms and messaging apps strip it on upload, so this says nothing about authenticity - but it removes every metadata check below."
+   }
+  ]
+ },
+ "image": {
+  "width": 640,
+  "height": 427
+ },
+ "pixel": {
+  "ela": {
+   "name": "ela",
+   "score": 4.54,
+   "regions": [
+    {
+     "bbox": [
+      432,
+      224,
+      480,
+      368
+     ],
+     "blocks": 20,
+     "area_fraction": 0.0192,
+     "mean_z": 4.54
+    },
+    {
+     "bbox": [
+      560,
+      128,
+      624,
+      240
+     ],
+     "blocks": 19,
+     "area_fraction": 0.0183,
+     "mean_z": 4.29
+    }
+   ],
+   "note": "re-saved at quality 90; mean error level 4.08"
+  },
+  "noise": {
+   "name": "noise",
+   "score": 22.79,
+   "regions": [
+    {
+     "bbox": [
+      0,
+      0,
+      224,
+      416
+     ],
+     "blocks": 51,
+     "area_fraction": 0.1962,
+     "mean_z": 20.57
+    },
+    {
+     "bbox": [
+      544,
+      0,
+      640,
+      416
+     ],
+     "blocks": 31,
+     "area_fraction": 0.1192,
+     "mean_z": 22.79
+    },
+    {
+     "bbox": [
+      288,
+      128,
+      384,
+      416
+     ],
+     "blocks": 20,
+     "area_fraction": 0.0769,
+     "mean_z": 17.32
+    },
+    {
+     "bbox": [
+      416,
+      352,
+      480,
+      416
+     ],
+     "blocks": 4,
+     "area_fraction": 0.0154,
+     "mean_z": 22.53
+    }
+   ],
+   "note": "median noise sigma 0.00 grey levels"
+  },
+  "ghost": {
+   "name": "ghost",
+   "score": 0.0,
+   "regions": [],
+   "note": "no localised ghost (map shown at quality 55)"
+  }
+ },
+ "verdict": {
+  "provenance": "No content credentials (C2PA).",
+  "editing_level": "none",
+  "editing_score": 0.0,
+  "generation": "No AI-generation declaration found (absence is not evidence of a camera origin).",
+  "generation_score": 0.0,
+  "authentic_score": 0.0,
+  "limited_signal": true,
+  "headline": "No provenance, limited forensic signal: no content credentials, no metadata, and no format-specific statistics to test. Nothing here supports a conclusion either way.",
+  "signals": [
+   {
+    "id": "c2pa.absent",
+    "module": "c2pa",
+    "title": "No content credentials",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "Most authentic images carry no C2PA manifest, so its absence is not evidence either way."
+   },
+   {
+    "id": "M00-stripped",
+    "module": "metadata",
+    "title": "No metadata",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "The file carries no EXIF, XMP, IPTC or text metadata. Social platforms and messaging apps strip it on upload, so this says nothing about authenticity - but it removes every metadata check below."
+   },
+   {
+    "id": "jpeg.na",
+    "module": "jpeg",
+    "title": "JPEG analyses not applicable",
+    "supports": "not_applicable",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "image/png has no JPEG quantisation tables: table fingerprinting and the double-compression test do not apply (reported as not applicable, not as a pass)."
+   },
+   {
+    "id": "pixel.ela",
+    "module": "pixel",
+    "title": "ELA map shown, not scored",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "strongest region [432, 224, 480, 368] (z 4.54). Not counted because thresholds are calibrated on JPEG files only. re-saved at quality 90; mean error level 4.08"
+   },
+   {
+    "id": "pixel.ghost",
+    "module": "pixel",
+    "title": "GHOST map shown, not scored",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "Not counted because thresholds are calibrated on JPEG files only. no localised ghost (map shown at quality 55)"
+   },
+   {
+    "id": "pixel.noise",
+    "module": "pixel",
+    "title": "NOISE map shown, not scored",
+    "supports": "neutral",
+    "strength": 0.0,
+    "weight": 0.0,
+    "contribution": 0.0,
+    "detail": "strongest region [0, 0, 224, 416] (z 20.57). Not counted because it localised no splice on the labelled set (docs/evaluation.md). median noise sigma 0.00 grey levels"
+   }
+  ]
+ },
+ "seconds": 0.17
+}
