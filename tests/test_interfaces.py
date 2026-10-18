@@ -90,7 +90,7 @@ def test_server_upload(photos, double_saved):
 
     from provlens.server import create_app
 
-    client = TestClient(create_app(max_bytes=5 * 1024 * 1024))
+    client = TestClient(create_app(max_bytes=5 * 1024 * 1024), base_url="http://localhost")
     assert client.get("/healthz").json()["ok"] is True
     assert "Choose or drop an image" in client.get("/").text
     with open(double_saved, "rb") as fh:
@@ -102,7 +102,7 @@ def test_server_upload(photos, double_saved):
         page = client.post("/analyze", files={"file": ("upload.jpg", fh, "image/jpeg")})
     assert page.status_code == 200 and "ProvenanceLens report" in page.text
     assert client.post("/api/analyze", files={"file": ("x.jpg", b"hello", "image/jpeg")}).status_code == 415
-    small = TestClient(create_app(max_bytes=1000))
+    small = TestClient(create_app(max_bytes=1000), base_url="http://localhost")
     with open(double_saved, "rb") as fh:
         assert small.post("/api/analyze", files={"file": ("big.jpg", fh, "image/jpeg")}).status_code == 413
 
@@ -135,3 +135,67 @@ def test_c2pa_check_failure_is_not_reported_as_absent(tmp_path, photos, monkeypa
     assert "unknown" in r["verdict"]["provenance"] and "No content credentials" not in r["verdict"]["provenance"]
     assert r["verdict"]["limited_signal"] is False
     assert any(s["id"] == "c2pa.error" for s in r["verdict"]["signals"])
+
+
+def test_server_hardening(double_saved):
+    pytest.importorskip("httpx")
+    from fastapi.testclient import TestClient
+
+    from provlens.server import create_app
+
+    app = create_app(max_bytes=200_000)
+    client = TestClient(app, base_url="http://127.0.0.1:8000")
+    # DNS rebinding: a request that arrives with someone else's Host header is refused
+    assert TestClient(app, base_url="http://attacker.example").get("/healthz").status_code == 400
+    page = client.get("/")
+    assert page.headers["x-content-type-options"] == "nosniff"
+    assert "frame-ancestors 'none'" in page.headers["content-security-policy"]
+    with open(double_saved, "rb") as fh:
+        report = client.post("/analyze", files={"file": ("<script>x</script>.jpg", fh, "image/jpeg")})
+    assert report.status_code == 200
+    assert "script-src" not in report.headers["content-security-policy"]  # reports may run no script at all
+    assert "<script>x</script>" not in report.text
+    # a body larger than the limit is refused from its declared length, before it is read
+    big = client.post("/api/analyze", content=b"x" * 400_000,
+                      headers={"content-type": "multipart/form-data; boundary=b"})
+    assert big.status_code == 413
+    # hostile file names cannot steer the temporary file
+    with open(double_saved, "rb") as fh:
+        odd = client.post("/api/analyze", files={"file": ("../../x\x00.j\npg", fh, "image/jpeg")})
+    assert odd.status_code == 200
+
+
+def test_cli_refuses_public_bind_without_allowed_host(capsys):
+    assert main(["serve", "--host", "0.0.0.0"]) == 2
+    assert "--allowed-host" in capsys.readouterr().err
+
+
+def test_body_limit_cuts_off_an_undeclared_stream():
+    """A chunked upload with no Content-Length is cut off once it passes the limit; the app never sees the rest."""
+    import asyncio
+
+    from provlens.server import BodyLimitMiddleware
+
+    consumed = []
+
+    async def app(scope, receive, send):  # stands in for the multipart parser: reads until the body ends
+        while True:
+            msg = await receive()
+            consumed.append(len(msg.get("body", b"")))
+            if not msg.get("more_body"):
+                break
+        await send({"type": "http.response.start", "status": 200, "headers": []})
+        await send({"type": "http.response.body", "body": b"ok"})
+
+    async def endless():
+        return {"type": "http.request", "body": b"x" * 10_000, "more_body": True}
+
+    sent = []
+
+    async def send(msg):
+        sent.append(msg)
+
+    scope = {"type": "http", "method": "POST", "path": "/api/analyze", "headers": [(b"transfer-encoding", b"chunked")]}
+    asyncio.run(BodyLimitMiddleware(app, limit=50_000)(scope, endless, send))
+    assert sent[0]["status"] == 413
+    assert sum(consumed) <= 50_000  # the oversized chunk was refused before the app received it

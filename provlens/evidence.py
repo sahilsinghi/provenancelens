@@ -205,11 +205,22 @@ def build_signals(result: dict[str, Any]) -> list[Signal]:
                             WEIGHTS["djpeg.double"], dj.get("note", "") + ". Re-saving alone is not manipulation."))
         elif dj.get("applicable"):
             S.append(Signal("djpeg.single", "djpeg", "No double-compression footprint", "neutral", 0.0, 0.0, dj.get("note", "")))
+    elif result.get("jpeg_error"):
+        S.append(Signal("jpeg.malformed", "jpeg", "JPEG structure damaged", "neutral", 0.0, 0.0,
+                        f"{result['jpeg_error']}. Table fingerprinting and the double-compression test were not run; "
+                        "damage alone is not evidence of editing."))
     else:
         S.append(Signal("jpeg.na", "jpeg", "JPEG analyses not applicable", "not_applicable", 0.0, 0.0,
                         f"{result.get('format')} has no JPEG quantisation tables: table fingerprinting and the "
                         "double-compression test do not apply (reported as not applicable, not as a pass)."))
 
+    img_info = result.get("image") or {}
+    if img_info.get("error"):
+        S.append(Signal("image.decode", "pixel", "Pixel data not analysed", "neutral", 0.0, 0.0,
+                        f"{img_info['error']}. Pixel maps were not run; damage alone is not evidence of editing."))
+    elif img_info.get("maps_skipped"):
+        S.append(Signal("image.maps_skipped", "pixel", "Pixel maps skipped", "neutral", 0.0, 0.0,
+                        img_info["maps_skipped"] + "."))
     px = result.get("pixel") or {}
     maps = {k: v for k, v in px.items() if isinstance(v, dict) and "regions" in v}
     limits = pixel_thresholds()

@@ -34,6 +34,7 @@ EDITORS = [
 GENERATORS = ["midjourney", "dall-e", "dall·e", "dalle", "stable diffusion", "stablediffusion", "novelai", "firefly",
               "imagen", "leonardo", "ideogram", "flux", "comfyui", "automatic1111", "invokeai", "bing image creator",
               "microsoft designer", "gemini", "openai"]
+MAX_PREVIEW_PIXELS = 120_000_000  # matches analyze.MAX_DECODE_PIXELS
 CAMERA_MAKERNOTE_BRANDS = ["canon", "nikon", "sony", "fujifilm", "olympus", "om digital", "panasonic", "pentax",
                            "ricoh", "leica", "apple", "samsung"]
 AI_DST = {
@@ -152,7 +153,9 @@ def _parse_xmp(raw: bytes | str) -> tuple[dict[str, Any], list[dict[str, str]]]:
     if start == -1 or end <= start:
         return {}, []
     try:
-        root = ET.fromstring(text[start:end])
+        # nosec B314: parsing starts at <x:xmpmeta>, so no DOCTYPE/entity declarations reach expat
+        # (tests/test_hostile_inputs.py::test_xmp_entities_are_never_expanded)
+        root = ET.fromstring(text[start:end])  # nosec B314
     except ET.ParseError:
         return {"_unparseable": True}, []
     props: dict[str, Any] = {}
@@ -192,7 +195,9 @@ def _exiftool(path: Path) -> dict[str, Any] | None:
     if not shutil.which("exiftool"):
         return None
     try:
-        out = subprocess.run(["exiftool", "-json", "-G", "-n", str(path)], capture_output=True, text=True, timeout=60)
+        # absolute path: a file named "-w ..." or "-@" must never reach exiftool as an option
+        out = subprocess.run(["exiftool", "-json", "-G", "-n", str(Path(path).resolve())],
+                             capture_output=True, text=True, timeout=60)
         return json.loads(out.stdout)[0]
     except (subprocess.SubprocessError, json.JSONDecodeError, IndexError):
         return None
@@ -457,8 +462,12 @@ def _thumbnail_difference(thumb: Image.Image, md: Metadata) -> float | None:
 def analyse(path: Path, jpeg_kinds: list[str] | None = None) -> tuple[Metadata, list[Finding]]:
     md = extract(path)
     with Image.open(path) as img:
-        img.load()
-        md._main_image = img.copy()  # type: ignore[attr-defined]
+        # only compared at thumbnail size, so decode a preview, never the full canvas; formats
+        # without draft decoding (PNG, WebP) are skipped above the analysis decode limit
+        if img.width * img.height <= MAX_PREVIEW_PIXELS:
+            img.draft("RGB", (1024, 1024))
+            img.thumbnail((1024, 1024))
+            md._main_image = img.copy()  # type: ignore[attr-defined]
     findings = rules(md, jpeg_kinds)
-    del md._main_image  # type: ignore[attr-defined]
+    md.__dict__.pop("_main_image", None)
     return md, findings

@@ -29,6 +29,15 @@ VIDEO_EDITORS = EDITORS + ["premiere", "final cut", "imovie", "davinci", "resolv
                            "kinemaster", "after effects", "handbrake", "shotcut", "kdenlive"]
 
 
+def _input(path: Path) -> str:
+    """Absolute ``file:`` URL so a name like ``concat:a|b`` or ``-i`` is never read as a protocol or option."""
+    return "file:" + str(Path(path).resolve())
+
+
+# Only local files may be opened, even if a container references other media (dref, playlists).
+_SAFE = ["-protocol_whitelist", "file"]
+
+
 def available() -> bool:
     return bool(shutil.which("ffprobe") and shutil.which("ffmpeg"))
 
@@ -36,7 +45,7 @@ def available() -> bool:
 def probe(path: Path) -> dict[str, Any]:
     if not shutil.which("ffprobe"):
         return {}
-    p = subprocess.run(["ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json", str(path)],
+    p = subprocess.run(["ffprobe", "-v", "error", *_SAFE, "-show_format", "-show_streams", "-of", "json", _input(path)],
                        capture_output=True, text=True, timeout=60)
     return json.loads(p.stdout or "{}")
 
@@ -119,7 +128,7 @@ def frames(path: Path, n: int = 6, duration: float | None = None) -> list[Image.
     times = [duration * (i + 0.5) / n for i in range(n)] if duration > 0 else [0.0]
     out = []
     for t in times:
-        p = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.3f}", "-i", str(path), "-frames:v", "1",
+        p = subprocess.run(["ffmpeg", "-v", "error", *_SAFE, "-ss", f"{t:.3f}", "-i", _input(path), "-frames:v", "1",
                             "-f", "image2pipe", "-vcodec", "png", "-"], capture_output=True, timeout=60)
         if p.returncode == 0 and p.stdout:
             out.append(Image.open(io.BytesIO(p.stdout)).convert("RGB"))

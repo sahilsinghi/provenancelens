@@ -41,4 +41,7 @@ markers = [
   "slow: regenerates the labelled evaluation set",
 ]
 addopts = "-m 'not slow'"
-filterwarnings = ["ignore:Using `httpx` with `starlette.testclient` is deprecated"]
+filterwarnings = [
+  "ignore:Using `httpx` with `starlette.testclient` is deprecated",
+  "ignore::PIL.Image.DecompressionBombWarning",  # the size limits are enforced explicitly in analyze.py
+]

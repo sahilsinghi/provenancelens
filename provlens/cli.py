@@ -237,9 +237,16 @@ def cmd_serve(a: argparse.Namespace) -> int:
 
     from provlens.server import create_app
 
-    app = create_app(trust_anchors=[Path(t) for t in a.trust or []], max_bytes=a.max_mb * 1024 * 1024)
-    if a.host not in ("127.0.0.1", "localhost", "::1"):
-        print(f"warning: listening on {a.host}; anyone who can reach it can upload files", file=sys.stderr)
+    loopback = a.host in ("127.0.0.1", "localhost", "::1")
+    if not loopback and not a.allowed_host:
+        print(f"provlens: binding to {a.host} needs --allowed-host NAME (the host name clients will use); "
+              "use --allowed-host '*' only behind your own reverse proxy", file=sys.stderr)
+        return EXIT_ERROR
+    app = create_app(trust_anchors=[Path(t) for t in a.trust or []], max_bytes=a.max_mb * 1024 * 1024,
+                     allowed_hosts=None if loopback else a.allowed_host)
+    if not loopback:
+        print(f"warning: listening on {a.host} without authentication; anyone who can reach it can upload files",
+              file=sys.stderr)
     uvicorn.run(app, host=a.host, port=a.port, log_level="info")
     return EXIT_OK
 
@@ -317,6 +324,8 @@ def build_parser() -> argparse.ArgumentParser:
     sv.add_argument("--port", type=int, default=8000)
     sv.add_argument("--trust", action="append", metavar="PEM")
     sv.add_argument("--max-mb", type=int, default=40)
+    sv.add_argument("--allowed-host", action="append", metavar="NAME",
+                    help="Host header to accept when not bound to loopback (repeatable)")
     sv.set_defaults(func=cmd_serve)
     return p
 

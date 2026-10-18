@@ -124,6 +124,15 @@ class NotJpeg(ValueError):
 
 
 def parse(data: bytes) -> JpegInfo:
+    try:
+        return _parse(data)
+    except NotJpeg:
+        raise
+    except (struct.error, IndexError, ValueError) as exc:  # truncated or malformed segments
+        raise NotJpeg(f"malformed JPEG structure: {type(exc).__name__}: {exc}") from exc
+
+
+def _parse(data: bytes) -> JpegInfo:
     if data[:2] != b"\xff\xd8":
         raise NotJpeg("missing SOI marker")
     info = JpegInfo()

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ProvenanceLens report: {{ r.file.name }}</title>
 <style>
@@ -55,7 +56,9 @@ footer { margin-top:36px; color:var(--muted); font-size:12px; }
 
   <div class="hero">
     <div>{% if r.image and r.image.thumbnail_jpeg_b64 %}<img alt="{{ 'sampled video frames' if r.image.contact_sheet else 'analysed image' }}" src="data:image/jpeg;base64,{{ r.image.thumbnail_jpeg_b64 }}">{% endif %}
-      <div class="sub">{% if r.video %}{{ r.video.video }} · {{ r.video.duration_s }} s · {{ r.video.frames_sampled }} frames sampled{% else %}{{ r.image.width }}×{{ r.image.height }} px{% endif %}</div></div>
+      <div class="sub">{% if r.video %}{{ r.video.video }} · {{ r.video.duration_s }} s · {{ r.video.frames_sampled }} frames sampled{% else %}{{ r.image.width }}×{{ r.image.height }} px{% endif %}</div>
+      {% if r.image and r.image.error %}<div class="sub">Pixels not decoded: {{ r.image.error }}</div>{% endif %}
+      {% if r.image and r.image.maps_skipped %}<div class="sub">Pixel maps skipped: {{ r.image.maps_skipped }}</div>{% endif %}</div>
     <div class="panel verdict">
       <div class="headline">{{ r.verdict.headline }}</div>
       <div class="q {{ 'limited' if r.verdict.limited_signal else '' }}"><b>Where did it come from?</b>{{ r.verdict.provenance }}</div>
@@ -125,9 +128,9 @@ footer { margin-top:36px; color:var(--muted); font-size:12px; }
     <div class="panel">
       {% set m = r.metadata.summary %}
       {% if r.metadata.empty %}<p class="sub" style="margin:0">No EXIF, XMP, IPTC or text metadata.</p>{% else %}
-      <div class="kv">{% for k, v in m.exif.items() %}<div>{{ k }}</div><div>{{ v }}</div>{% endfor %}
-      {% for k, v in m.gps.items() %}<div>{{ k }}</div><div>{{ v }}</div>{% endfor %}
-      {% for k, v in m.xmp.items() %}{% if loop.index <= 12 %}<div>{{ k }}</div><div>{{ v }}</div>{% endif %}{% endfor %}
+      <div class="kv">{% for k, v in (m.exif or {}).items() %}<div>{{ k }}</div><div>{{ v }}</div>{% endfor %}
+      {% for k, v in (m.gps or {}).items() %}<div>{{ k }}</div><div>{{ v }}</div>{% endfor %}
+      {% for k, v in (m.xmp or {}).items() %}{% if loop.index <= 12 %}<div>{{ k }}</div><div>{{ v }}</div>{% endif %}{% endfor %}
       {% if m.png_text_keys %}<div>PNG text</div><div>{{ m.png_text_keys|join(', ') }}</div>{% endif %}
       {% if m.container %}{% for k, v in m.container.items() %}<div>{{ k }}</div><div>{{ v }}</div>{% endfor %}{% else %}<div>Embedded thumbnail</div><div>{{ m.thumbnail_bytes }} bytes</div>{% endif %}
       <div>Reader</div><div>{{ m.reader }}</div></div>{% endif %}
@@ -154,6 +157,7 @@ footer { margin-top:36px; color:var(--muted); font-size:12px; }
       {% if j.luma_table %}<div class="qt">{% for v in j.luma_table %}<span>{{ v }}</span>{% endfor %}</div>{% endif %}
       <div class="sub" style="margin-top:6px">Natural (row-major) order. Shared tables identify an encoder library, not an app.</div></div>
   </div>
+  {% elif r.jpeg_error %}<div class="panel"><p class="sub" style="margin:0">The JPEG structure could not be parsed ({{ r.jpeg_error }}), so encoder fingerprinting and the double-compression test were <b>not run</b> (not a pass).</p></div>
   {% elif r.video %}<div class="panel"><p class="sub" style="margin:0">{{ r.format }}: video frames carry no JPEG tables and the pixel thresholds were never calibrated on video, so compression and pixel forensics are <b>not applicable</b> (not a pass). The frames above are for the analyst.</p></div>
   {% else %}<div class="panel"><p class="sub" style="margin:0">{{ r.format }}: no JPEG quantisation tables, so encoder fingerprinting and the double-compression test are <b>not applicable</b> (not a pass).</p></div>{% endif %}
 

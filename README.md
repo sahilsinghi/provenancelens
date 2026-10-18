@@ -112,7 +112,7 @@ Calibration caught three detectors that looked fine on a headline number and wer
 | Stripped image → "no provenance, limited forensic signal" | `::test_stripped_png_reports_limited_signal` |
 
 ```bash
-pytest                    # 84 tests, ~5 s (fetches the pinned C2PA samples once)
+pytest                    # 94 tests, ~5 s (fetches the pinned C2PA samples once)
 pytest -m slow            # re-runs the whole evaluation and asserts the published numbers
 ```
 
@@ -142,6 +142,14 @@ provlens/
   pixel.py        ELA, noise, JPEG ghosts, heatmaps          datasets.py              pinned C2PA conformance files
 docs/   evaluation.md · blog post · samples/ · demo.gif
 ```
+
+## Security
+
+Every input is treated as hostile. Each analysis stage fails into the report rather than
+crashing (1,000 fuzzed files: 0 crashes, 0 hangs). Decompression bombs are refused before
+decoding, and reports carry a script-free CSP. `provlens serve` is loopback-only by default, with
+a Host allow-list, streaming upload limits and security headers. See [SECURITY.md](SECURITY.md)
+for the details and known limits.
 
 ## Data and licences
 

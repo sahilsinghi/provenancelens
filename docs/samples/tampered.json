@@ -1,11 +1,11 @@
 {
  "tool": "provenancelens",
  "version": "0.1.0",
- "generated": "2026-10-18T03:32:04+00:00",
+ "generated": "2026-10-18T08:13:22+00:00",
  "file": {
   "name": "tampered.jpg",
   "size": 192919,
-  "sha256": "84838b57807d3c3373656ff0def26d1a5a99e7d3d7001abc120223276a2d144f"
+  "sha256": "89d8bf034d48180022a2469f2e8825dac79633b95e54726b6371c859c171c7e4"
  },
  "format": "image/jpeg",
  "extension_mismatch": null,
@@ -14,7 +14,7 @@
   "state": "Invalid",
   "summary": "Content credentials are present but INVALID: The image bytes changed after signing (hard binding broken): pixels or file structure were modified. ProvenanceLens's own recomputation of the hard binding also does not match.",
   "active": {
-   "label": "urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2",
+   "label": "urn:c2pa:858afab3-8a05-473a-b638-bc2e4317f39c",
    "title": "astronaut.jpg",
    "format": null,
    "claim_generator": "provenancelens 0.1.0",
@@ -23,7 +23,7 @@
     "common_name": "ProvenanceLens Sample Camera",
     "alg": "Es256",
     "time": null,
-    "serial": "197466862571659642320704381806399177040349061650"
+    "serial": "557174185321649536982261380964904461917467981476"
    },
    "actions": [
     {
@@ -40,7 +40,7 @@
   },
   "manifests": [
    {
-    "label": "urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2",
+    "label": "urn:c2pa:858afab3-8a05-473a-b638-bc2e4317f39c",
     "title": "astronaut.jpg",
     "active": true,
     "signer": "ProvenanceLens Sample Camera",
@@ -55,7 +55,7 @@
     "code": "signingCredential.trusted",
     "sdk": "signing certificate trusted, found in [system_anchors] trust anchors",
     "explain": "The signer's certificate chains to a trust anchor you configured.",
-    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.signature"
+    "url": "self#jumbf=/c2pa/urn:c2pa:858afab3-8a05-473a-b638-bc2e4317f39c/c2pa.signature"
    },
    {
     "scope": "active manifest",
@@ -63,7 +63,7 @@
     "code": "claimSignature.insideValidity",
     "sdk": "claim signature valid",
     "explain": "The signing certificate was within its validity period when the claim was signed.",
-    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.signature"
+    "url": "self#jumbf=/c2pa/urn:c2pa:858afab3-8a05-473a-b638-bc2e4317f39c/c2pa.signature"
    },
    {
     "scope": "active manifest",
@@ -71,7 +71,7 @@
     "code": "claimSignature.validated",
     "sdk": "claim signature valid",
     "explain": "The manifest's signature is cryptographically valid.",
-    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.signature"
+    "url": "self#jumbf=/c2pa/urn:c2pa:858afab3-8a05-473a-b638-bc2e4317f39c/c2pa.signature"
    },
    {
     "scope": "active manifest",
@@ -79,7 +79,7 @@
     "code": "assertion.hashedURI.match",
     "sdk": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data",
     "explain": "An assertion is exactly as it was when the manifest was signed.",
-    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.assertions/c2pa.hash.data"
+    "url": "self#jumbf=/c2pa/urn:c2pa:858afab3-8a05-473a-b638-bc2e4317f39c/c2pa.assertions/c2pa.hash.data"
    },
    {
     "scope": "active manifest",
@@ -87,7 +87,7 @@
     "code": "assertion.hashedURI.match",
     "sdk": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.thumbnail.claim",
     "explain": "An assertion is exactly as it was when the manifest was signed.",
-    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.assertions/c2pa.thumbnail.claim"
+    "url": "self#jumbf=/c2pa/urn:c2pa:858afab3-8a05-473a-b638-bc2e4317f39c/c2pa.assertions/c2pa.thumbnail.claim"
    },
    {
     "scope": "active manifest",
@@ -95,7 +95,7 @@
     "code": "assertion.hashedURI.match",
     "sdk": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2",
     "explain": "An assertion is exactly as it was when the manifest was signed.",
-    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.assertions/c2pa.actions.v2"
+    "url": "self#jumbf=/c2pa/urn:c2pa:858afab3-8a05-473a-b638-bc2e4317f39c/c2pa.assertions/c2pa.actions.v2"
    },
    {
     "scope": "active manifest",
@@ -103,7 +103,7 @@
     "code": "signingCredential.ocsp.skipped",
     "sdk": "OCSP fetching skipped",
     "explain": "Online revocation (OCSP) checking was skipped.",
-    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.signature"
+    "url": "self#jumbf=/c2pa/urn:c2pa:858afab3-8a05-473a-b638-bc2e4317f39c/c2pa.signature"
    },
    {
     "scope": "active manifest",
@@ -111,7 +111,7 @@
     "code": "assertion.dataHash.mismatch",
     "sdk": "asset hash error, name: jumbf manifest, error: hash verification( Hashes do not match )",
     "explain": "The image bytes changed after signing (hard binding broken): pixels or file structure were modified.",
-    "url": "self#jumbf=/c2pa/urn:c2pa:b7219b66-b9cf-4021-91be-68bd9406aab2/c2pa.assertions/c2pa.hash.data"
+    "url": "self#jumbf=/c2pa/urn:c2pa:858afab3-8a05-473a-b638-bc2e4317f39c/c2pa.assertions/c2pa.hash.data"
    }
   ],
   "hard_binding": {
@@ -133,27 +133,27 @@
     "role": "signer",
     "subject": "O=ProvenanceLens TEST ONLY,CN=ProvenanceLens Sample Camera",
     "issuer": "O=ProvenanceLens TEST ONLY,CN=ProvenanceLens Test Root",
-    "not_before": "2026-10-18T03:27:03+00:00",
-    "not_after": "2027-10-18T03:27:03+00:00",
-    "serial": "197466862571659642320704381806399177040349061650",
+    "not_before": "2026-10-18T08:08:21+00:00",
+    "not_after": "2027-10-18T08:08:21+00:00",
+    "serial": "557174185321649536982261380964904461917467981476",
     "key": "EC secp256r1",
     "eku": [
      "emailProtection"
     ],
     "is_ca": false,
-    "sha256": "1c8c610e0e0325c401a14d2343ac32e2d9d3588ab7ba896b8114dbb75244ba41"
+    "sha256": "69a171e3cc985b99b767b78b81e408cca4c511489119a4db769b54f8daa18ff0"
    },
    {
     "role": "root",
     "subject": "O=ProvenanceLens TEST ONLY,CN=ProvenanceLens Test Root",
     "issuer": "O=ProvenanceLens TEST ONLY,CN=ProvenanceLens Test Root",
-    "not_before": "2026-10-18T03:27:03+00:00",
-    "not_after": "2028-10-17T03:27:03+00:00",
-    "serial": "172798392488787412019129749094750863254259434960",
+    "not_before": "2026-10-18T08:08:21+00:00",
+    "not_after": "2028-10-17T08:08:21+00:00",
+    "serial": "456954155916639324851391790514974464113319696048",
     "key": "EC secp256r1",
     "eku": [],
     "is_ca": true,
-    "sha256": "a65d659c25aac906f1a009f9e71dd9dfad79751ee546cbddd4541abc98ed32ce"
+    "sha256": "fb1ae9fa005a89aebd0bbd2a3d9c905b687e59da3f2bb6e97ee0340e909b8b90"
    }
   ],
   "certificate_findings": [
@@ -500,5 +500,5 @@
    }
   ]
  },
- "seconds": 0.17
+ "seconds": 0.16
 }

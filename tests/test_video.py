@@ -57,3 +57,11 @@ def test_editor_and_creation_time_rules(clip, tmp_path):
     rules = {f["rule"]: f["status"] for f in r["metadata"]["findings"]}
     assert rules.get("V02-editor") == "edited"
     assert rules.get("V04-creation-times") == "inconsistent"
+
+
+def test_odd_file_names_are_not_protocols_or_options(clip, tmp_path):
+    for name in ("concat:x.mp4", "-y.mp4", "subfile,,start,0,end,1,,:clip.mp4"):
+        odd = tmp_path / name
+        odd.write_bytes(clip.read_bytes())
+        r = analyse(odd)
+        assert r["video"]["frames_sampled"] == 6, name

@@ -62,7 +62,7 @@ def fetch(root: Path, names: list[str] | None = None) -> list[Path]:
             continue
         url = f"https://raw.githubusercontent.com/{REPO}/{COMMIT}/{urllib.parse.quote(PREFIX + name)}"
         req = urllib.request.Request(url, headers={"User-Agent": "provenancelens"})
-        with urllib.request.urlopen(req, timeout=60) as resp:  # noqa: S310 - pinned GitHub raw URL
+        with urllib.request.urlopen(req, timeout=60) as resp:  # noqa: S310  # nosec B310 - fixed https GitHub URL, blob hash verified
             data = resp.read()
         if blob_sha(data) != sha:
             raise ValueError(f"{name}: content does not match pinned blob {sha}")

@@ -14,6 +14,7 @@ import datetime as dt
 import io
 import json
 import mimetypes
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -67,8 +68,10 @@ def make_identity(out: Path, signer_name: str = "ProvenanceLens Test Signer", da
     ident = Identity(out / "test-root.pem", out / "signer-chain.pem", out / "signer-key.pem")
     ident.root_pem.write_bytes(root.public_bytes(pem))
     ident.chain_pem.write_bytes(leaf.public_bytes(pem) + root.public_bytes(pem))
-    ident.key_pem.write_bytes(key.private_bytes(pem, serialization.PrivateFormat.PKCS8, serialization.NoEncryption()))
-    ident.key_pem.chmod(0o600)
+    fd = os.open(ident.key_pem, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)  # never world-readable, not even briefly
+    with os.fdopen(fd, "wb") as fh:
+        os.fchmod(fh.fileno(), 0o600)
+        fh.write(key.private_bytes(pem, serialization.PrivateFormat.PKCS8, serialization.NoEncryption()))
     return ident
 
 
