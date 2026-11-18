@@ -12,7 +12,7 @@ license = { text = "MIT" }
 authors = [{ name = "Sahil Singhi" }]
 keywords = ["c2pa", "content-credentials", "image-forensics", "provenance", "osint", "ela", "jpeg"]
 dependencies = [
-  "c2pa-python>=0.38,<0.39",
+  "c2pa-python>=0.38,<0.40",
   "cryptography>=42",
   "numpy>=1.26",
   "scipy>=1.11",
